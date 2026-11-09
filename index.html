@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#07111d" />
+  <title>BLUE LOCK — PROJECT EGOIST</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Project Egoist home"><span class="brand-mark">BL</span><span class="brand-copy">BLUE LOCK<small>PROJECT EGOIST</small></span></a>
+      <div class="match-chip"><span class="live-dot"></span><span id="phaseLabel">FIRST SELECTION · ROOM Z</span></div>
+      <button class="icon-button" id="soundButton" aria-label="Toggle sound" title="Sound on/off">♫</button>
+    </header>
+
+    <section class="game-layout">
+      <aside class="left-rail">
+        <div class="rail-heading"><span class="eyebrow">CAMPAIGN</span><span class="chapter-count">01 <i>/ 06</i></span></div>
+        <div class="mission-list" id="missionList">
+          <button class="mission active" data-mission="0"><span class="mission-no">01</span><span><b>ROOM Z</b><small>The First Selection</small></span><i>●</i></button>
+          <button class="mission" data-mission="1"><span class="mission-no">02</span><span><b>TEAM X</b><small>King of the Field</small></span><i>●</i></button>
+          <button class="mission" data-mission="2"><span class="mission-no">03</span><span><b>TEAM Y</b><small>Read the Pitch</small></span><i>●</i></button>
+          <button class="mission" data-mission="3"><span class="mission-no">04</span><span><b>TEAM W</b><small>Unleash the Panther</small></span><i>●</i></button>
+          <button class="mission" data-mission="4"><span class="mission-no">05</span><span><b>TEAM V</b><small>Three-Goal Comeback</small></span><i>●</i></button>
+          <button class="mission" data-mission="5"><span class="mission-no">06</span><span><b>SECOND SELECTION</b><small>Rivalry · 3v3</small></span><i>●</i></button>
+        </div>
+        <div class="rail-tip"><span class="tip-icon">✳</span><div><b>YOUR EGO IS YOUR WEAPON</b><small>Every bold play brings you closer to Flow.</small></div></div>
+      </aside>
+
+      <section class="pitch-column">
+        <div class="scorebar">
+          <div class="team-name home"><span class="team-emblem">Z</span><span>TEAM Z<small>THE BLUE LOCK ELEVEN</small></span></div>
+          <div class="score-center"><span class="score" id="score">0 <i>—</i> 0</span><span class="match-clock" id="clock">90:00</span></div>
+          <div class="team-name away"><span>TEAM X<small>THE CHALLENGERS</small></span><span class="team-emblem away-emblem">X</span></div>
+        </div>
+        <div class="pitch-frame" id="pitchFrame">
+          <canvas id="gameCanvas" aria-label="Interactive football pitch"></canvas>
+          <div class="canvas-topline"><span class="mode-tag"><i></i><span id="modeText">MATCH DAY</span></span><span class="possession" id="possession">● YOUR POSSESSION</span></div>
+          <div class="objective-card" id="objective"><span class="objective-icon">◎</span><span><small>MISSION OBJECTIVE</small><b id="objectiveText">Score 1 goal to clear the room.</b></span></div>
+          <div class="center-message" id="centerMessage"><span class="message-kicker">THE PITCH IS YOURS</span><h1>AWAKEN<br><em>YOUR EGO.</em></h1><p>Make your weapon the difference.</p><button id="startButton" class="primary-button">ENTER THE PITCH <span>↗</span></button><div class="start-hint">MOVE <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> &nbsp; SHOOT <kbd>SPACE</kbd></div></div>
+          <div class="goal-flash" id="goalFlash"><span>GOAL</span><small id="goalCaption">THE FIELD BENDS TO YOUR WILL</small></div>
+          <div class="mobile-controls" id="mobileControls">
+            <div class="stick-zone" id="stickZone"><div class="stick-base"><div class="stick-knob" id="stickKnob"></div></div></div>
+            <div class="action-controls"><button class="touch-action weapon-action" data-action="weapon"><span>✦</span><small>WEAPON</small></button><button class="touch-action pass-action" data-action="pass"><span>↗</span><small>PASS</small></button><button class="touch-action shoot-action" data-action="shoot"><span>➤</span><small>SHOOT</small></button><button class="touch-action flow-action" data-action="flow"><span>◉</span><small>FLOW</small></button></div>
+          </div>
+          <div class="flow-announce" id="flowAnnounce"><span>⚡</span> FLOW STATE <small>15 SECONDS · TOTAL EGO</small></div>
+        </div>
+        <div class="below-pitch">
+          <div class="player-card"><div class="player-avatar" id="playerAvatar"><span>11</span></div><div class="player-info"><div><b id="playerName">ISAGI YOICHI</b><span class="weapon-name" id="weaponName">METAVISION · DIRECT SHOT</span></div><div class="player-stats"><span>SPD <i id="statSpeed">74</i></span><span>KCK <i id="statKick">78</i></span><span>CTL <i id="statControl">80</i></span></div></div><button class="swap-button" id="swapButton" title="Switch player (Tab)">⇄<small>SWAP</small></button></div>
+          <div class="ego-panel"><div class="ego-top"><span><i class="ego-star">✦</i> EGO</span><b id="egoPercent">0%</b><span class="flow-ready" id="flowReady">FLOW READY</span></div><div class="ego-track"><div class="ego-fill" id="egoFill"></div><div class="ego-glint"></div></div><div class="ego-foot"><span id="egoHint">Play selfish. Make it count.</span><button id="flowButton">ACTIVATE FLOW <kbd>F</kbd></button></div></div>
+        </div>
+        <div class="character-strip" id="characterStrip"><span class="strip-label">WEAPONS</span><button class="character-chip selected" data-player="0"><i class="chip-dot cyan"></i>ISAGI <kbd>1</kbd></button><button class="character-chip" data-player="1"><i class="chip-dot yellow"></i>BACHIRA <kbd>2</kbd></button><button class="character-chip" data-player="2"><i class="chip-dot pink"></i>NAGI <kbd>3</kbd></button><button class="character-chip" data-player="3"><i class="chip-dot red"></i>CHIGIRI <kbd>4</kbd></button><span class="strip-spacer"></span><span class="controls-legend"><kbd>Q</kbd> PASS <kbd>E</kbd> WEAPON <kbd>SHIFT</kbd> SPRINT</span></div>
+      </section>
+
+      <aside class="right-rail">
+        <div class="tactics-head"><span class="eyebrow">FIELD INTEL</span><span class="live-status"><i></i> LIVE</span></div>
+        <div class="mini-map-wrap"><canvas id="miniMap" width="240" height="150"></canvas><span class="map-label">ATTACKING →</span></div>
+        <div class="intel-card"><div class="intel-label"><span>⚡</span> ACTIVE WEAPON</div><h3 id="weaponTitle">METAVISION</h3><p id="weaponDescription">Read every space. Find the perfect angle for a direct shot.</p><div class="weapon-cooldown"><span>WEAPON CHARGE</span><div class="cooldown-track"><i id="cooldownFill"></i></div></div><button class="weapon-trigger" id="weaponButton">TRIGGER WEAPON <kbd>E</kbd></button></div>
+        <div class="playlog"><div class="log-header"><span class="eyebrow">MATCH FEED</span><span>LIVE</span></div><div id="logItems" class="log-items"><p><i>·</i> Whistle blows. Find your opening.</p><p><i>·</i> The first selection begins.</p></div></div>
+        <div class="next-match"><span class="next-icon">↗</span><div><small>NEXT CHALLENGE</small><b id="nextMatch">TEAM X · BAROU'S DOMAIN</b></div></div>
+      </aside>
+    </section>
+    <footer class="footer"><span>BLUE LOCK <i>·</i> PROJECT EGOIST</span><span>NO PASSION. NO GOALS. <b>ONLY EGO.</b></span><span>© BLUE LOCK TRAINING FACILITY</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="game.js"></script>
+</body>
+</html>
